@@ -4,8 +4,10 @@
 // init project
 var express = require('express');
 var app = express();
-const multer=require('multer');
-var upload=({dest:'uploads/'});
+const multer = require('multer');
+const upload = multer({
+  dest: 'uploads/' // this saves your file into a directory called "uploads"
+}); 
 
 var app=express();
 
@@ -20,6 +22,9 @@ app.use(express.static('public'));
 // http://expressjs.com/en/starter/basic-routing.html
 app.get("/", function (request, response) {
   response.sendFile(__dirname + '/views/index.html');
+});
+app.post('/', upload.single('file-to-upload'), (req, res) => {
+  res.redirect('/');
 });
 
 // listen for requests :)
