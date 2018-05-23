@@ -24,7 +24,8 @@ app.get("/", function (request, response) {
   response.sendFile(__dirname + '/views/index.html');
 });
 app.post('/', upload.single('file-to-upload'), (req, res) => {
-  res.redirect('/');
+  res.redirect('/',{
+  size:req.size});
 });
 
 // listen for requests :)

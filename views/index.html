@@ -31,11 +31,11 @@
       <p class="bold">Oh hi,</p>
       
       <p>Tell me your hopes and dreams:</p>
+       <form action="/" enctype="multipart/form-data" method="post">
+      <input type="file" name="file-to-upload">
+      <input type="submit" value="Upload">
+    </form>
       
-      <form>
-        <input name="dream" type="text" maxlength="100" placeholder="Dreams!" aria-labelledby="submit-dream">
-        <button type="submit" id="submit-dream">Submit Dream</button>
-      </form>
       
       <section class="dreams">
         <ul id="dreams"></ul>
