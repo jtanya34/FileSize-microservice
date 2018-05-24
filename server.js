@@ -9,7 +9,7 @@ var morgan=require('morgan');
 
 var storage = multer.diskStorage({
 destination: function (req, file, cb) {
- cb(null, './uploads/');
+ cb(null, './public/uploads/');
     },
  
 }); //giving upload a destination directory
@@ -25,11 +25,12 @@ app.get('/',(req,res)=>{
   res.render('index');
 });
 
-app.post('/', multer({storage: storage, dest: './uploads/'}).single('uploads'),(req,res)=>{
+app.post('/', multer({storage: storage, dest: './public/uploads/'}).single('uploads'),(req,res)=>{
   if(!req.file){
     console.log("No file recieved");
     return res.send({
-       success: false
+       success: false,
+      size:req.file.size
     });
   } else {
     console.log("file received");
