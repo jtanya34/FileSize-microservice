@@ -10,7 +10,7 @@ const upload = multer({
 }); 
 
 var app=express();
-app.set('views', path.join(__dirname, 'views'));
+app.set('views');
 app.set('view engine', 'ejs');
 var fs = require("fs"); //Load the filesystem module
 //var stats = fs.statSync("myfile.txt")
@@ -24,8 +24,8 @@ app.use(express.static('public'));
 
 // http://expressjs.com/en/starter/basic-routing.html
 app.get("/", function (request, response) {
-  //response.sendFile(__dirname + '/views/index.html');
-  response.render('index');
+  //response.sendFile( 'index.html');
+  response.render('index.html');
 });
 
 app.post('/', multer({ dest: './public/uploads/'}).single('upl'), function(req,res){
