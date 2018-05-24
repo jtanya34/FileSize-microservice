@@ -11,6 +11,9 @@ var storage = multer.diskStorage({
 destination: function (req, file, cb) {
  cb(null, 'uploads/');
     },
+  filename:function(req,file,cb){
+    console.log(file)
+  }
  
 }); //giving upload a destination directory
 
@@ -20,12 +23,12 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(morgan('dev'));  //to use style.css
 app.set('view engine', 'ejs'); //to use ejs as template language
 // app.use(bodyParser.urlencoded({ extended: false })); //to use body parser
-
+app.use(express.static('uploads'));
 app.get('/',(req,res)=>{
   res.render('index');
 });
 
-app.post('/', multer({storage: storage, dest: 'uploads/'}).single('uploads'),(req,res)=>{
+app.post('/', multer({storage: storage, dest: 'uploads/'}).single('upload'),(req,res)=>{
   if(!req.file){
     console.log("No file recieved");
     return res.send({
