@@ -7,7 +7,7 @@ var multer = require('multer'); //to require multer for uploading photos
 var bodyParser = require('body-parser');//to require body-parser to grab json form data
 var morgan=require('morgan');   
 
-var upload = multer.diskStrorage({ dest: 'public/uploads/' }) //giving upload a destination directory
+var upload = multer.diskStorage({ dest: 'public/uploads/' }) //giving upload a destination directory
 
 var app = express();  //to use express
 app.use(bodyParser.json());
@@ -18,7 +18,19 @@ app.set('view engine', 'ejs'); //to use ejs as template language
 
 
 
-app.post('/', 
+app.post('/', upload.single('avatar'),(req,res)=>{
+  if(!req.file){
+    console.log("No file recieved");
+    return res.send({
+       success: false
+    });
+  } else {
+    console.log("file received");
+    return res.send({
+      success: true
+      
+    });
+  }
 });
 
 
