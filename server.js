@@ -13,7 +13,7 @@ destination: function (req, file, cb) {
     },
   filename:function(req,file,cb){
     var ext=file.mimetype.split('/')[1]
-    cb(null,file.filename+'-'+ Date.now()+ '.' + ext);
+    //cb(null,file.filename+'-'+ Date.now()+ '.' + ext);
    
   }
  
@@ -40,7 +40,7 @@ app.post('/', multer(storage).single('upload'),(req,res)=>{
   } else {
     console.log("file received");
     return res.send({
-      Filename:req.file.filename,
+      Filename:req.file.originalname,
       size:req.file.size
     });
   }
