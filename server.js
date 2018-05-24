@@ -2,40 +2,30 @@
 // where your node app starts
 
 // init project
-var express = require('express');
-var app = express();
-const multer = require('multer');
-const upload = multer({
-  dest: 'public/uploads/' // this saves your file into a directory called "uploads"
-}); 
+var express = require('express'); //to require express.js
+var multer = require('multer'),  //to require multer for uploading photos
+    bodyParser = require('body-parser'), //to require body-parser to grab json form data
+    path = require('path');
 
-var app=express();
-app.set('views');
-app.set('view engine', 'ejs');
-var fs = require("fs"); //Load the filesystem module
-//var stats = fs.statSync("myfile.txt")
-//var fileSizeInBytes = stats["size"]
+var upload = multer({ dest: 'public/uploads/' }) //giving upload a destination directory
 
-// we've started you off with Express, 
-// but feel free to use whatever libs or frameworks you'd like through `package.json`.
+var app = express();  //to use express
+app.use(bodyParser.json());
+app.set('views', path.join(__dirname, 'views'));
+app.use(express.static(__dirname + '/public'));  //to use style.css
+app.set('view engine', 'ejs'); //to use ejs as template language
+// app.use(bodyParser.urlencoded({ extended: false })); //to use body parser
 
-// http://expressjs.com/en/starter/static-files.html
-app.use(express.static('public'));
-
-// http://expressjs.com/en/starter/basic-routing.html
-app.get("/", function (request, response) {
-  //response.sendFile( 'index.html');
-  response.render('index.html');
-});
+app.get('/', function(req, res){  //using express for routing and printing out content
+    res.render('index');  //render it in html. In ejs, display what we want to display
+})
 
 app.post('/', multer({ dest: './public/uploads/'}).single('upl'), function(req,res){
     console.log(req.body); //form fields
     console.log(req.file); //form files
     res.status(204).end();
 });
-// app.post('/', upload.single('file-to-upload'), (req, res) => {
-//  res.render(req.file.size);
-// });
+
 
 // listen for requests :)
 var listener = app.listen(process.env.PORT, function () {
