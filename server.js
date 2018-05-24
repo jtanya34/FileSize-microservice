@@ -6,10 +6,10 @@ var express = require('express'); //to require express.js
 var multer = require('multer'); //to require multer for uploading photos
 var bodyParser = require('body-parser');//to require body-parser to grab json form data
 var morgan=require('morgan');   
-
+//app.use(express.static('uploads'));
 var storage = multer.diskStorage({
 destination: function (req, file, cb) {
- cb(null, './public/uploads/');
+ cb(null, 'uploads/');
     },
  
 }); //giving upload a destination directory
@@ -25,12 +25,12 @@ app.get('/',(req,res)=>{
   res.render('index');
 });
 
-app.post('/', multer({storage: storage, dest: './public/uploads/'}).single('uploads'),(req,res)=>{
+app.post('/', multer({storage: storage, dest: 'uploads/'}).single('uploads'),(req,res)=>{
   if(!req.file){
     console.log("No file recieved");
     return res.send({
-       success: false,
-      size:req.file.size
+       success: false
+      //size:req.file.size
     });
   } else {
     console.log("file received");
