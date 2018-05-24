@@ -2,6 +2,7 @@ dependencies:
   body-parser: 1.18.3
   ejs: 2.6.1
   express: 4.16.3
+  morgan: 1.9.0
   multer: 1.3.0
 packages:
   /accepts/1.3.5:
@@ -21,6 +22,14 @@ packages:
     dev: false
     resolution:
       integrity: sha1-ml9pkFGx5wczKPKgCJaLZOopVdI=
+  /basic-auth/2.0.0:
+    dependencies:
+      safe-buffer: 5.1.1
+    dev: false
+    engines:
+      node: '>= 0.8'
+    resolution:
+      integrity: sha1-AV2z81PgLlY3d1X5YnQuiYHnu7o=
   /body-parser/1.18.2:
     dependencies:
       bytes: 3.0.0
@@ -329,6 +338,18 @@ packages:
     dev: false
     resolution:
       integrity: sha1-MAV0OOrGz3+MR2fzhkjWaX11yQM=
+  /morgan/1.9.0:
+    dependencies:
+      basic-auth: 2.0.0
+      debug: 2.6.9
+      depd: 1.1.2
+      on-finished: 2.3.0
+      on-headers: 1.0.1
+    dev: false
+    engines:
+      node: '>= 0.8.0'
+    resolution:
+      integrity: sha1-0B+mxlhZt2/PMbPLU6OCGjEdgFE=
   /ms/2.0.0:
     dev: false
     resolution:
@@ -368,6 +389,12 @@ packages:
       node: '>= 0.8'
     resolution:
       integrity: sha1-IPEzZIGwg811M3mSoWlxqi2QaUc=
+  /on-headers/1.0.1:
+    dev: false
+    engines:
+      node: '>= 0.8'
+    resolution:
+      integrity: sha1-ko9dD0cNSTQmUepnlLCFfBAGk/c=
   /parseurl/1.3.2:
     dev: false
     engines:
@@ -579,4 +606,5 @@ specifiers:
   body-parser: ^1.18.3
   ejs: ^2.6.1
   express: ^4.16.3
+  morgan: ^1.9.0
   multer: ^1.3.0
