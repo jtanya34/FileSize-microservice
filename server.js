@@ -12,7 +12,7 @@ destination: function (req, file, cb) {
  cb(null, 'uploads/');
     },
   filename:function(req,file,cb){
-    console.log(file)
+    //console.log(file)
   }
  
 }); //giving upload a destination directory
@@ -28,7 +28,7 @@ app.get('/',(req,res)=>{
   res.render('index');
 });
 
-app.post('/', multer({storage: storage, dest: 'uploads/'}).single('upload'),(req,res)=>{
+app.post('/', multer(storage).single('upload'),(req,res)=>{
   if(!req.file){
     console.log("No file recieved");
     return res.send({
@@ -38,8 +38,7 @@ app.post('/', multer({storage: storage, dest: 'uploads/'}).single('upload'),(req
   } else {
     console.log("file received");
     return res.send({
-      success: true
-      
+      size:req.file.size
     });
   }
 });
