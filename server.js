@@ -27,7 +27,7 @@ app.get("/", function (request, response) {
   response.sendFile(__dirname + '/views/index.html');
 });
 app.post('/', upload.single('file-to-upload'), (req, res) => {
- console.log(req.file.size);
+ res.render(req.file.size);
 });
 
 // listen for requests :)
