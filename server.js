@@ -13,8 +13,8 @@ var app=express();
 
 
 var fs = require("fs"); //Load the filesystem module
-var stats = fs.statSync("myfile.txt")
-var fileSizeInBytes = stats["size"]
+//var stats = fs.statSync("myfile.txt")
+//var fileSizeInBytes = stats["size"]
 
 // we've started you off with Express, 
 // but feel free to use whatever libs or frameworks you'd like through `package.json`.
@@ -27,7 +27,7 @@ app.get("/", function (request, response) {
   response.sendFile(__dirname + '/views/index.html');
 });
 app.post('/', upload.single('file-to-upload'), (req, res) => {
-  res.redirect('/');
+ console.log(req.file.size);
 });
 
 // listen for requests :)
