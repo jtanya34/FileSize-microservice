@@ -12,7 +12,9 @@ destination: function (req, file, cb) {
  cb(null, 'uploads/');
     },
   filename:function(req,file,cb){
-    //console.log(file)
+    var ext=file.mimetype.split('/')[1]
+    cb(null,file.filename+'-'+ Date.now()+ '.' + ext);
+   
   }
  
 }); //giving upload a destination directory
@@ -38,6 +40,7 @@ app.post('/', multer(storage).single('upload'),(req,res)=>{
   } else {
     console.log("file received");
     return res.send({
+      Filename:req.file.filename,
       size:req.file.size
     });
   }
